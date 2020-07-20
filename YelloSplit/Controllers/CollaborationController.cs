@@ -161,7 +161,7 @@ namespace YelloSplit.Controllers
                   
             var CreatedDate = DateTime.Now.ToString();
             ex.ExecuteQueryFunction("Insert into App_Collaborations_Linked (CollaboID,ShortDescription,StatusID,LinkedUserID,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate) Values " +
-                                 $"({ID},{""},{1},'{EntityID}',{EntityID},{LinkedUserID},1,{AppCategoryID},'{EntityID}','{CreatedDate}','{EntityID}','{CreatedDate}')");
+                                 $"({ID},{""},{1},'{EntityID}',{EntityID},'{EntityID}','{CreatedDate}','{EntityID}','{CreatedDate}')");
 
 
 
