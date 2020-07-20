@@ -1,0 +1,212 @@
+﻿@model IEnumerable<YelloSplit.Models.Upload>
+
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body id="wrapper">
+
+    <section id="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-7 col-xs-7 top-header-links">
+                    <ul class="contact_links">
+                        <li><i class="fa fa-phone"></i><a href="#">011 325 6659</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="#">YellowSplit.co.za</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-5 social">
+                    <ul class="social_links">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <h1>Yellow</h1>
+                            <span>Split</span>
+                        </a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="~/Site/Home">Home</a></li>
+                            <li><a href="~/Site/features">Features</a></li>
+                            <li><a href="~/Site/about">About</a></li>
+                            <li><a href="~/Site/contact">Contact</a></li>
+                            <li><a href="~/Site/login">Sign In</a></li>
+                            <li><a href="~/Site/registration">Sign Up</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+        </nav>
+        <!--/.nav-ends -->
+    </header>
+    <section id="top_banner">
+        <div class="banner">
+            <div class="inner text-center">
+                <h2>Welcome to Yello Split</h2>
+            </div>
+        </div>
+        <div class="page_info">
+            <div class="container">
+                <div class="row">
+                    @foreach (var @dataw in Model)
+                    {
+                        <div class="col-md-8 col-sm-8 col-xs-6">
+                            <h4>User Name :@dataw.Name</h4>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;"><span class="sep"> </span><span class="current"> Total Credits : @dataw.Credits</span></div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <section id="about-page-section-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
+                    <div class="section-heading">
+                        <h2>Your Number 1 <span>Collabo Site</span></h2>
+                        <p class="subheading">SUBMIT YOUR COLLBO</p>
+                    </div>
+                    <p>
+                        <a asp-action="UserCollaborations">Return To List</a>
+                    </p>
+                    <form role="form" class="login-form" asp-action="Add">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <select id="Category" class="form-control" placeholder="Category" name="Category">
+                                @foreach (var @dataw in Model)
+                                {
+                                    @foreach (var @dataw2 in @dataw.varCategory)
+                                    {
+                                        <option id="Category">@dataw2.Description</option>
+                                    }
+
+                                }
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="SubCategory" class="form-control" placeholder="SubCategory" name="SubCategory">
+                                    @foreach (var @dataw in Model) { @foreach (var @dataw2 in @dataw.varSubCategory) { <option id="SubCategory">@dataw2.Description</option>
+                                    }
+                                }
+                                    </select>
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" placeholder="Name" aria-describedby="basic-addon1" name="Name">
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="input-group form-group">
+                            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1" name="Description">
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="input-group form-group">
+                            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" placeholder="Add Soundcloud Audio" aria-describedby="basic-addon1" name="Audio">
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn">Submit Collab</button>
+
+                    </form>
+
+
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                    <img height="" width="auto" src="img/iphone62.png" class="attachment-full img-responsive" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+@*<h4>Collaborations</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <input asp-for="Category" class="form-control" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SubCategory" class="control-label"></label>
+                    <input asp-for="SubCategory" class="form-control" />
+                    <span asp-validation-for="SubCategory" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Audio" class="control-label"></label>
+                    <input asp-for="Audio" class="form-control" />
+                    <span asp-validation-for="Audio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+
+</html>

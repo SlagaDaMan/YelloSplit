@@ -1,12 +1,4 @@
-﻿@model IEnumerable<YelloSplit.Models.UserDetails>
-
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>Index</h1>
-<body id="wrapper">
+﻿<body id="wrapper">
 
     <section id="top-header">
         <div class="container">
@@ -72,19 +64,15 @@
         <div class="page_info">
             <div class="container">
                 <div class="row">
-                    @foreach (var @dataw in Model)
-                    {
-                        <div class="col-md-8 col-sm-8 col-xs-6">
-                            <h4>User Name :@dataw.Name</h4>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;"><span class="sep"> </span><span class="current"> Total Credits : @dataw.Credits</span></div>
-                    }
+                    <div class="col-md-8 col-sm-8 col-xs-6">
+                        <h4>About</h4>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;">Home<span class="sep"> 	/ </span><span class="current"> About</span></div>
                 </div>
             </div>
         </div>
 
-
+      
     </section>
 
 
@@ -93,70 +81,20 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
                     <div class="section-heading">
-                        <h2>Your Number 1 <span>Collabo Site</span></h2>
-                        <p class="subheading">Check all our music below</p>
+                        <h2>Successfully <span>Registered</span></h2>
+                        <p class="subheading">You have been successfully registered as a Yello Split member, you can now login to the system</p>
                     </div>
                     <p>
-                        <a asp-action="UserCollaborations">Upload My Collabo</a>
+                        You will receive free 30 credit so that you can get things started, please click the below button to login to Yello split. Enjoy!!
+                        <br><br>
+
+                        <form role="form" class="login-form" asp-action="login">
+                            <button type="submit" class="btn">Login</button>
+                        </form>
+
                     </p>
-                   
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Music
-                                    </th>
-                                    <th>
-                                        Category
-                                    </th>
-                                    <th>
-                                        SubCategory
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
 
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Collab
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var @dataw in Model)
-                                {
-                                    @foreach (var @dataw2 in @dataw.varCollaborations)
-                                    {
-                                <tr>
-                                    <td>
-                                        @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))
-                                    </td>
-                                    <td>
-                                        @dataw2.Category
-                                    </td>
-                                    <td>
-                                        @dataw2.SubCategory
-                                    </td>
-                                    <td>
-                                        @dataw2.Name
-                                    </td>
-                                    <td>
-                                        @dataw2.Description
-                                    </td>
-
-                                    <td>
-                                        <a asp-action="Collabo" asp-route-id="@dataw2.ID">Collab</a>
-
-                                    </td>
-                                </tr>
-                                        }
-                                    }
-                                </tbody>
-                        </table>
-                 
-                    </div>
+                </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
                     <img height="" width="auto" src="img/iphone62.png" class="attachment-full img-responsive" alt="">
                 </div>
@@ -166,54 +104,3 @@
 
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
