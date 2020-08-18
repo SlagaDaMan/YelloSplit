@@ -20,11 +20,29 @@ namespace YelloSplit.Controllers
             var CategoryID = varUser.Rows[0][1].ToString();
 
             DataTable varCollab = new DataTable();
-            varCollab = ex.ExecuteQueryFunction("Select CT.Description as Category,SC.Description as SubCategory,U.FirstName + ' ' + U.LastName as Name, C.FileDirectoryID as Audio,C.ShortDescription as Description  from App_Collaborations C " +
+            varCollab = ex.ExecuteQueryFunction("Select C.ID, CT.Description as Category,SC.Description as SubCategory,U.FirstName + ' ' + U.LastName as Name, C.FileDirectoryID as Audio,C.ShortDescription as Description  from App_Collaborations C " +
                                                 "Left Join Lk_CategoryTypes CT ON  CT.ID = C.CategoryID" +
                                                 " Left Join Lk_SubCategoryTypes SC ON SC.ID = C.SubCategoryID" +
                                                 " LEFT JOIN App_Users U ON U.ID = C.UserID" +
-                                                " Where C.APPTypeID = " + CategoryID + ";");
+                                                " Where C.APPTypeID = " + CategoryID + " AND StatusID = 1 AND C.ID NOT IN (Select CollaboID from [dbo].[App_Collaborations_Linked] Where LinkedUserID  = " + EntityID + ");");
+
+            DataTable varCollabMessages = new DataTable();
+            varCollabMessages = ex.ExecuteQueryFunction("Select AC.FileDirectoryID as Audio,CT.Description as Category, SCT.Description as SubCategory,U.FirstName + ' ' + U.LastName as MasterOwner, AC.ShortDescription,(SELECT FirstName + ' ' + LastName as CollaboName  from App_Users  Where ID = ACL.LinkedUserID ) CollaboName, ACL.NewUpload as ResponseAudio  from [dbo].[App_Collaborations_Linked] ACL" +
+                                                " LEFT JOIN[dbo].[App_Collaborations] AC ON AC.ID = ACL.CollaboID" +
+                                                " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
+                                                " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
+                                                " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
+                                                " Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 2 ");
+            var varMessages = varCollabMessages.Rows.Count;
+
+            DataTable varCategories = new DataTable();
+            varCategories = ex.ExecuteQueryFunction("Select Description from Lk_CategoryTypes Where APPID =  " + CategoryID);
+
+            DataTable varPending = new DataTable();
+            varPending = ex.ExecuteQueryFunction("Select Count(CollaboID) as Pending from [dbo].[App_Collaborations_Linked] Where LinkedUserID  = " + EntityID + " AND StatusID <> 3");
+
+            DataTable varSubCategories = new DataTable();
+            varSubCategories = ex.ExecuteQueryFunction("Select Description from Lk_SubCategoryTypes Where APPID =  " + CategoryID);
 
             UserDetails userDetails = new UserDetails();
             Collaborations collabs = new Collaborations();
@@ -35,15 +53,28 @@ namespace YelloSplit.Controllers
                             Name = row["FirstName"].ToString(),
                             LastName = row["LastName"].ToString(),
                             Credits = row["Credits"].ToString(),
+                            Pending = varPending.Rows[0][0].ToString(),
+                            Messages = varMessages.ToString(),
                             varCollaborations = (from DataRow row2 in varCollab.Rows
                                                  select new Collaborations
                                                  {
+                                                     ID = Convert.ToInt32(row2["ID"].ToString()),
                                                      Category = row2["Category"].ToString(),
                                                      SubCategory = row2["SubCategory"].ToString(),
                                                      Name = row2["Name"].ToString(),
                                                      Audio = row2["Audio"].ToString(),
                                                      Description = row2["Description"].ToString(),
                                                  }).ToList(),
+                               varCategory = (from DataRow row2 in varCategories.Rows
+                                                    select new Category
+                                                    {
+                                                        Description = row2["Description"].ToString(),
+                                                    }).ToList(),
+                               varSubCategory = (from DataRow row2 in varSubCategories.Rows
+                                              select new SubCategory
+                                              {
+                                                  Description = row2["Description"].ToString(),
+                                              }).ToList(),
                            }).FirstOrDefault();
             return View(new List<UserDetails> { userDetails });
         }
@@ -161,7 +192,7 @@ namespace YelloSplit.Controllers
                   
             var CreatedDate = DateTime.Now.ToString();
             ex.ExecuteQueryFunction("Insert into App_Collaborations_Linked (CollaboID,ShortDescription,StatusID,LinkedUserID,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate) Values " +
-                                 $"({ID},{""},{1},'{EntityID}',{EntityID},'{EntityID}','{CreatedDate}','{EntityID}','{CreatedDate}')");
+                                 $"({ID},'{""}',{1},'{EntityID}','{EntityID}','{CreatedDate}','{EntityID}','{CreatedDate}')");
 
 
 

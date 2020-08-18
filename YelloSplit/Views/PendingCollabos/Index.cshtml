@@ -1,0 +1,325 @@
+﻿@model IEnumerable<YelloSplit.Models.UserDetails>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body id="wrapper">
+
+    <section id="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-7 col-xs-7 top-header-links">
+                    <ul class="contact_links">
+                        <li><i class="fa fa-phone"></i><a href="#">011 325 6659</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="#">YellowSplit.co.za</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-5 social">
+                    <ul class="social_links">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <h1>Yellow</h1>
+                            <span>Split</span>
+                        </a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="~/Site/Home">Home</a></li>
+                            <li><a href="~/Site/features">Features</a></li>
+                            <li><a href="~/Site/about">About</a></li>
+                            <li><a href="~/Site/contact">Contact</a></li>
+                            <li><a href="~/Site/login">Sign In</a></li>
+                            <li><a href="~/Site/registration">Sign Up</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+        </nav>
+        <!--/.nav-ends -->
+    </header>
+    @foreach (var @dataw in Model)
+    {
+        <section id="top_banner">
+            <div class="banner">
+                <div class="inner text-center">
+                    <h2>Welcome to Yello Split</h2>
+                </div>
+            </div>
+            <div class="page_info">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-8 col-sm-8 col-xs-6">
+                            <h4>User Name :@dataw.Name</h4>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;"><span class="sep"> Total Credits : @dataw.Credits | </span><span class="current"> <a asp-controller="PendingCollabos" asp-action="Index" style="color:blue">Pending (@dataw.Pending)</a>  |   <a asp-controller="PendingCollabos" asp-action="Completed" style="color:blue">Messages (@dataw.Messages)</a> </span></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+
+        <section id="about-page-section-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
+                        <div class="section-heading">
+                            <h2>Response Track <span>Required</span></h2>
+                            <p class="subheading">  <a asp-controller="Collaboration" asp-action="UserCollaborations" style="color:blue">Back To Main</a></p>
+                        </div>
+                        <br /><br />
+                              <form role="form" class="login-form" asp-action="submit">
+
+                                  <table style="overflow-x:auto;">
+                                      <thead>
+                                          <tr>
+                                              <th>
+                                                  Music
+                                              </th>
+
+                                              <th>
+                                                  SubCategory
+                                              </th>
+                                              <th>
+                                                  Name
+                                              </th>
+
+                                              <th>
+                                                  Description
+                                              </th>
+                                              <th>
+                                                  Response Audio
+                                              </th>
+                                              <th>
+                                                  Submit
+                                              </th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+
+                                          @foreach (var @dataw2 in @dataw.varCollaborations)
+                                          {
+                                              <tr>
+                                                  <td>
+                                                      @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))
+                                                  </td>
+
+                                                  <td>
+                                                      @dataw2.SubCategory
+                                                  </td>
+                                                  <td>
+                                                      @dataw2.Name
+                                                  </td>
+                                                  <td>
+                                                      @dataw2.Description
+                                                  </td>
+                                                  <td id="audio" name="audio">
+                                                      <input type="text" id="audio" name="audio" /> 
+                                                  </td>
+
+                                                  <td>
+                                                      <a asp-action="submit" asp-route-id="@dataw2.ID">Collab</a>
+
+                                                  </td>
+                                              </tr>
+                                          }
+
+                                      </tbody>
+                                  </table>
+                                  </form>
+
+</div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+                        <img height="" width="auto" src="img/iphone62.png" class="attachment-full img-responsive" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+</body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 10px;
+        height: 50px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        height: 30%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+        height: 30%;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<style>
+    .select-css {
+        display: block;
+        font-size: 16px;
+        font-family: sans-serif;
+        font-weight: 700;
+        color: #444;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        width: 100%;
+        max-width: 100%; /* useful when width is set to anything other than 100% */
+        box-sizing: border-box;
+        margin: 0;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: .5em;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient.
+        for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
+
+    */
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+        background-repeat: no-repeat, repeat;
+        /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
+        background-position: right .7em top 50%, 0 0;
+        /* icon size, then gradient */
+        background-size: .65em auto, 100%;
+    }
+        /* Hide arrow icon in IE browsers */
+        .select-css::-ms-expand {
+            display: none;
+        }
+        /* Hover style */
+        .select-css:hover {
+            border-color: #888;
+        }
+        /* Focus style */
+        .select-css:focus {
+            border-color: #aaa;
+            /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
+            box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+            box-shadow: 0 0 0 3px -moz-mac-focusring;
+            color: #222;
+            outline: none;
+        }
+
+        /* Set options to normal weight */
+        .select-css option {
+            font-weight: normal;
+        }
+
+    /* Support for rtl text, explicit support for Arabic and Hebrew */
+    *[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
+        background-position: left .7em top 50%, 0 0;
+        padding: .6em .8em .5em 1.4em;
+    }
+
+    /* Disabled styles */
+    .select-css:disabled, .select-css[aria-disabled=true] {
+        color: graytext;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+    }
+
+        .select-css:disabled:hover, .select-css[aria-disabled=true] {
+            border-color: #aaa;
+        }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

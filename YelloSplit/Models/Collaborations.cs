@@ -12,9 +12,11 @@ namespace YelloSplit.Models
 
         public string LastName { get; set; }
         public string Credits { get; set; }
+        public string Pending { get; set; }
+        public string Messages { get; set; }
         public List<Collaborations> varCollaborations { get; set; }
-   
-
+        public List<Category> varCategory { get; set; }
+        public List<SubCategory> varSubCategory { get; set; }
     }
 
     public class Upload
@@ -47,6 +49,9 @@ namespace YelloSplit.Models
         public string Name { get; set; }
         public string Audio { get; set; }
         public string Description { get; set; }
+        public string ResposeAudio { get; set; }
+        public string Status { get; set; }
 
     }
+
 }
