@@ -157,7 +157,13 @@
                                         Description
                                     </th>
                                     <th>
-                                        Collab
+                                        Response Audio
+                                    </th>
+                                    <th>
+                                        Decline
+                                    </th>
+                                    <th>
+                                        Accept
                                     </th>
                                 </tr>
                             </thead>
@@ -165,28 +171,32 @@
 
                                 @foreach (var @dataw2 in @dataw.varCollaborations)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))
-                                        </td>
-                                        <td>
-                                            @dataw2.Category
-                                        </td>
-                                        <td>
-                                            @dataw2.SubCategory
-                                        </td>
-                                        <td>
-                                            @dataw2.Name
-                                        </td>
-                                        <td>
-                                            @dataw2.Description
-                                        </td>
-
-                                        <td>
-                                            <a asp-action="Collabo" asp-route-id="@dataw2.ID">Collab</a>
-
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))
+                                    </td>
+                                    <td>
+                                        @dataw2.Category
+                                    </td>
+                                    <td>
+                                        @dataw2.SubCategory
+                                    </td>
+                                    <td>
+                                        @dataw2.Name
+                                    </td>
+                                    <td>
+                                        @dataw2.Description
+                                    </td>
+                                    <td >
+                                        @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.ResposeAudio))
+                                    </td>
+                                    <td>
+                                      <a asp-action="Collabo" asp-route-id="@dataw2.ID">Decline</a>
+                                    </td>
+                                    <td>
+                                        <a asp-action="Collabo" asp-route-id="@dataw2.ID">Accept</a>
+                                    </td>
+                                </tr>
                                 }
 
                             </tbody>

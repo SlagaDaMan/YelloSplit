@@ -1,82 +1,83 @@
-﻿<body id="wrapper">
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/scss/main.css">
+    <link rel="stylesheet" href="~/scss/skin.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="./script/index.js"></script>
+    <title>Home</title>
+</head>
+
+
+
+<body id="wrapper" class="orange">
+
     <section id="top-header">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 top-header-links">
+                <div class="col-md-7 col-sm-7 col-xs-7 top-header-links">
                     <ul class="contact_links">
-                        <li>
-                            <i class="fa fa-phone"></i>
-                            <a href="#">+91 848 594 5080</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope"></i>
-                            <a href="#">sales@aspiresoftware.in</a>
-                        </li>
+                        <li><i class="fa fa-phone"></i><a href="#">011 325 6659</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="#">YellowSplit.co.za</a></li>
                     </ul>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-5 col-sm-5 col-xs-5 social">
                     <ul class="social_links">
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-pinterest"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-skype"></i>
-                            </a>
-                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        </div>
+
+
     </section>
+
     <header>
         <nav class="navbar navbar-inverse">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <h1>Aspire</h1>
-                        <span>Software Solutions</span>
-                    </a>
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <h1>Yellow</h1>
+                            <span>Split</span>
+                        </a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li ><a href="~/Site/Home">Home</a></li>
+                            <li><a href="~/Site/features">Features</a></li>
+                            <li><a href="~/Site/about">About</a></li>
+                            <li class="active"><a href="~/Site/contact">Contact</a></li>
+                            <li><a href="~/Site/login">Sign In</a></li>
+                            <li><a href="~/Site/registration">Sign Up</a></li>
+                        </ul>
+                    </div>
+
+
                 </div>
-                <div id="navbar" class="collapse navbar-collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="~/Site/Home">Home</a></li>
-                        <li><a href="~/Site/features">Features</a></li>
-                        <li><a href="~/Site/about">About</a></li>
-                        <li><a href="~/Site/contact">Contact</a></li>
-                        <li><a href="~/Site/login">Sign In</a></li>
-                        <li><a href="~/Site/registration">Sign Up</a></li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
             </div>
         </nav>
-        <!--/.nav-ends -->
     </header>
+
     <section id="top_banner">
         <div class="banner">
             <div class="inner text-center">
@@ -106,7 +107,7 @@
                     Drop your
                     <span>Message</span>
                 </h2>
-                <p class="subheading">Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum ea utamur impetus fuisset nam nostrud euismod volumus ne mei.</p>
+             @*   <p class="subheading">Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum ea utamur impetus fuisset nam nostrud euismod volumus ne mei.</p>*@
             </div>
             <div class="row contact-wrap">
                 <div class="status alert alert-success" style="display: none"></div>
@@ -165,24 +166,24 @@
                                     <address>
                                         <h5>Head Office</h5>
                                         <p>
-                                            Aspire Software Solutions
+                                            Yello Split
                                             <br>
-                                            202, Parishram Complex,
+                                            185, Smith Steet,
                                             <br>
-                                            Mithakhali Six Roads,
+                                            Fairland Randburg,
                                             <br>
-                                            Navrangpura, Ahmedabad,
+                                            5 Zotos House,
                                             <br>
-                                            Gujarat, India.
+                                            Johannesburg.
                                         </p>
                                         <p>
-                                            Phone:+91 848 594 5080
+                                            Phone:+27 82 536 0287
                                             <br>
-                                            Email Address:sales@aspiresoftware.in
+                                            Email Address:sales@yellowsplit.com
                                         </p>
                                     </address>
                                 </li>
-                                <li class="col-sm-6">
+                                @*<li class="col-sm-6">
                                     <address>
                                         <h5>Zone#2 Office</h5>
                                         <p>
@@ -202,7 +203,7 @@
                                             Email Address:sales@aspiresoftware.in
                                         </p>
                                     </address>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                     </div>
@@ -218,7 +219,11 @@
                         <h4>Address</h4>
                         <hr />
                         <p>
-                            Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum.
+                            Yello Split
+                            185, Smith Steet,
+                            Fairland Randburg,
+                            5 Zotos House,
+                            Johannesburg.
                         </p>
                         <a href="#" class="learnmore">
                             Learn More
@@ -269,27 +274,27 @@
                         </ul>
                     </div>
                 </div>
-               
-				<block></block>">
-				<div class="footer-block">
-				<h4>Recent Posts</h4>
-				<hr/>
-				<ul class="footer-links">
-				<li>
-				<a href="#" class="post">Lorem ipsum dolor sit amet</a>
-																												<p class="post-date">May 25, 2017</p>
-																											</li>
-																											<li>
-																												<a href="#" class="post">Lorem ipsum dolor sit amet</a>
-																												<p class="post-date">May 25, 2017</p>
-																											</li>
-																											<li>
-																												<a href="#" class="post">Lorem ipsum dolor sit amet</a>
-																												<p class="post-date">May 25, 2017</p>
-																											</li>
-																										</ul>
-																									</div>
-																							
+
+                @*<block></block>
+                <div class="footer-block">
+                    <h4>Recent Posts</h4>
+                    <hr />
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#" class="post">Lorem ipsum dolor sit amet</a>
+                            <p class="post-date">May 25, 2017</p>
+                        </li>
+                        <li>
+                            <a href="#" class="post">Lorem ipsum dolor sit amet</a>
+                            <p class="post-date">May 25, 2017</p>
+                        </li>
+                        <li>
+                            <a href="#" class="post">Lorem ipsum dolor sit amet</a>
+                            <p class="post-date">May 25, 2017</p>
+                        </li>
+                    </ul>
+                </div>*@
+
             </div>
         </div>
     </section>

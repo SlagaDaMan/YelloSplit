@@ -15,7 +15,7 @@ namespace YelloSplit.Helpers
     {
         public DataTable ExecuteQueryFunction(string Query)
         {
-            string connectionString = "Data Source=HOME\\SQLEXPRESS;Initial Catalog=YelloSplit;Integrated Security=True";
+            string connectionString = "Data Source=ACEENDS\\SQLEXPRESS;Initial Catalog=YelloSplit;Integrated Security=True";
            // string dd = Properties.Settings.Default.OfficeManagementSystemConnectionString.ToString();
 
            // string connectionString = "Data Source=SQL6010.site4now.net;Initial Catalog=DB_A62B58_eazybill;User Id=DB_A62B58_eazybill_admin;Password=Password@1;";

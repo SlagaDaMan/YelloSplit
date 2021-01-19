@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <body id="wrapper">
+    <body id="wrapper"  class="orange">
 
         <section id="top-header">
             <div class="container">
@@ -93,102 +93,92 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
                             <div class="section-heading">
-                                <h2>Your Number 1 <span>Collabo Site</span></h2>
+                                <h2>Your Number 1 <span>Collaboration Site</span></h2>
                                 <p class="subheading">  <a asp-action="UserCollaborations" style="color:blue">Upload My Collabo</a></p>
                             </div>
-                             <div class="row">
-                            <div class="column">
-                                        <label>Category</label>
+                            @*<div class="row">
+        <div class="column">
+                    <label>Category</label>
 
 
-                                        <select class="select-css">
+                    <select class="select-css">
 
-                                            @foreach (var @dataw3 in @dataw.varCategory)
-                                            {
+                        @foreach (var @dataw3 in @dataw.varCategory)
+                        {
 
-                                                <option>@dataw3.Description</option>
-                                            }
-                                            </select>
+                            <option>@dataw3.Description</option>
+                        }
+                        </select>
 
-                                    </div>
-                             
+                </div>
 
-                            
-                                    <div class="column">
-                                        <label>Sub Category</label>
 
-                                        <select class="select-css">
-                                            @foreach (var @dataw4 in @dataw.varSubCategory)
-                                            {
-                                                <option>@dataw4.Description</option>
-                                            }
-                                            </select>
 
-                                    </div>
-                             
+                <div class="column">
+                    <label>Sub Category</label>
 
-                                <div class="column" align="Left">
-                                    <label >Search</label>
-                                    <p>
-                                        <button>Filter</button>
-                                    </p>
+                    <select class="select-css">
+                        @foreach (var @dataw4 in @dataw.varSubCategory)
+                        {
+                            <option>@dataw4.Description</option>
+                        }
+                        </select>
 
-                                </div>
-                            </div> <br /><br />
+                </div>
 
-                         
-                            <table style="overflow-x:auto;">
+
+            <div class="column" align="Left">
+                <label >Search</label>
+                <p>
+                    <button>Filter</button>
+                </p>
+
+            </div>
+        </div> <br /><br />*@
+
+
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>
                                             Music
                                         </th>
                                         <th>
-                                            Category
+                                            Details
                                         </th>
-                                        <th>
-                                            SubCategory
-                                        </th>
-                                        <th>
-                                            Name
-                                        </th>
-
                                         <th>
                                             Description
                                         </th>
                                         <th>
                                             Collab
                                         </th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 
-                                        @foreach (var @dataw2 in @dataw.varCollaborations)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))
-                                                </td>
-                                                <td>
-                                                    @dataw2.Category
-                                                </td>
-                                                <td>
-                                                    @dataw2.SubCategory
-                                                </td>
-                                                <td>
-                                                    @dataw2.Name
-                                                </td>
-                                                <td>
-                                                    @dataw2.Description
-                                                </td>
 
-                                                <td>
-                                                    <a asp-action="Collabo" asp-route-id="@dataw2.ID">Collab</a>
+                                    @foreach (var @dataw2 in @dataw.varCollaborations)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @* @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))*@
+                                            </td>
+                                            <td>
+                                                <p style="font-size:90%;">Category: @dataw2.Category</p>
+                                                <p style="font-size:90%;">SubCategory : @dataw2.SubCategory</p>
+                                                <p style="font-size:90%;">Name : @dataw2.Name</p>
 
-                                                </td>
-                                            </tr>
-                                        }
-                                  
+                                            </td>
+                                            <td>
+                                                @dataw2.Description
+                                            </td>
+                                            <td>
+                                                <a asp-action="Collabo" asp-route-id="@dataw2.ID">Collab</a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
                                 </tbody>
                             </table>
 
@@ -202,7 +192,7 @@
         }
 
         </body>
-<style>
+@*<style>
     * {
         box-sizing: border-box;
     }
@@ -212,7 +202,47 @@
         float: left;
         width: 33.33%;
         padding: 10px;
-        height: 50px; /* Should be removed. Only for demonstration */
+        height: 20px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+</style>*@
+
+<style>
+    table, td, th {
+    /*    border: 1px solid black;*/
+    }
+
+    table {
+     /*   border-collapse: collapse;*/
+        width: 100%;
+    }
+
+    th {
+        height: 50px;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create four equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 25%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
     }
 
     /* Clear floats after the columns */
@@ -223,23 +253,25 @@
     }
 
 </style>
-<style>
+
+@*<style>
     table {
         border-collapse: collapse;
-        width: 100%;
-        height:30%;
+        width: 20%;
+        height:10%;
     }
 
     th, td {
         text-align: left;
         padding: 8px;
-        height: 30%;
+        height: 1%;
+        width: 25%;
     }
 
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-</style>
+</style>*@
 
 <style>
   .select-css {

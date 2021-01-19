@@ -32,7 +32,7 @@ namespace YelloSplit.Controllers
                                                 " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
                                                 " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
                                                 " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
-                                                " Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 2 ");
+                                                " Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 3 ");
             var varMessages = varCollabMessages.Rows.Count;
 
             DataTable varCategories = new DataTable();

@@ -28,12 +28,16 @@ namespace YelloSplit.Controllers
                                                 " Where AC.APPTypeID = " + CategoryID + " AND ACL.LinkedUserID = " + EntityID + "  AND ACL.StatusID <> 3 ");
 
             DataTable varCollabMessages = new DataTable();
-            varCollabMessages = ex.ExecuteQueryFunction("Select AC.FileDirectoryID as Audio,CT.Description as Category,,SCT.Description as SubCategory,U.FirstName + ' ' + U.LastName as MasterOwner, AC.ShortDescription,(SELECT FirstName + ' ' + LastName as CollaboName  from App_Users  Where ID = ACL.LinkedUserID ) CollaboName, ACL.NewUpload as ResponseAudio  from [dbo].[App_Collaborations_Linked] ACL" +
-                                                " LEFT JOIN[dbo].[App_Collaborations] AC ON AC.ID = ACL.CollaboID" +
-                                                " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
-                                                " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
-                                                " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
-                                                " Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 2 ");
+            varCollabMessages = ex.ExecuteQueryFunction("Select AC.FileDirectoryID as Audio," +
+                                                       " CT.Description as Category, " +
+                                                       " SCT.Description as SubCategory, U.FirstName + ' ' + U.LastName as MasterOwner, AC.ShortDescription," +
+                                                       " (Select FirstName + ' ' + LastName from App_Users Where ID = ACL.LinkedUserID ) as CollaboName , " +
+                                                       " ACL.NewUpload as ResponseAudio" +
+                                                       " from[dbo].[App_Collaborations_Linked] ACL" +
+                                                       " LEFT JOIN[dbo].[App_Collaborations] AC ON AC.ID = ACL.CollaboID" +
+                                                       " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
+                                                       " Left Join Lk_CategoryTypes CT ON CT.ID = AC.CategoryID" +
+                                                       " LEFT JOIN App_Users U ON U.ID = AC.UserID Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 2 ");
             var varMessages = varCollabMessages.Rows.Count;
 
             DataTable varCategories = new DataTable();
@@ -97,13 +101,13 @@ namespace YelloSplit.Controllers
                                                 " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
                                                 " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
                                                 " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
-                                                " Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 2 ");
+                                                " Where AC.APPTypeID = " + CategoryID + " AND AC.UserID = " + EntityID + "  AND ACL.StatusID = 3 ");
             var varMessages = varCollab.Rows.Count;
             DataTable varCategories = new DataTable();
             varCategories = ex.ExecuteQueryFunction("Select Description from Lk_CategoryTypes Where APPID =  " + CategoryID);
 
             DataTable varPending = new DataTable();
-            varPending = ex.ExecuteQueryFunction("Select Count(CollaboID) as Pending from [dbo].[App_Collaborations_Linked] Where LinkedUserID  = " + EntityID + " AND StatusID <> 3");
+            varPending = ex.ExecuteQueryFunction("Select Count(CollaboID) as Pending from [dbo].[App_Collaborations_Linked] Where LinkedUserID  = " + EntityID + " AND StatusID = 3");
 
             DataTable varSubCategories = new DataTable();
             varSubCategories = ex.ExecuteQueryFunction("Select Description from Lk_SubCategoryTypes Where APPID =  " + CategoryID);
@@ -148,7 +152,7 @@ namespace YelloSplit.Controllers
         {
             UsersQueries ex = new UsersQueries();
             DataTable varUser = new DataTable();
-            varUser = ex.ExecuteQueryFunction("Update [dbo].[App_Collaborations_Linked] SET [NewUpload] = '" + audio + "', StatusID = 2 Where ID = " + ID);
+            varUser = ex.ExecuteQueryFunction("Update [dbo].[App_Collaborations_Linked] SET [NewUpload] = '" + audio + "', StatusID = 3 Where ID = " + ID);
             return RedirectToAction("Index", "Collaboration");
         }
 
