@@ -148,13 +148,43 @@ namespace YelloSplit.Controllers
             return View(new List<UserDetails> { userDetails });
         }
 
-        public IActionResult submit(string ID, string audio)
+        public IActionResult submit(string ID, string ResposeAudio)
         {
             UsersQueries ex = new UsersQueries();
             DataTable varUser = new DataTable();
-            varUser = ex.ExecuteQueryFunction("Update [dbo].[App_Collaborations_Linked] SET [NewUpload] = '" + audio + "', StatusID = 3 Where ID = " + ID);
+            varUser = ex.ExecuteQueryFunction("Update [dbo].[App_Collaborations_Linked] SET [NewUpload] = '" + ResposeAudio + "', StatusID = 3 Where ID = " + ID);
             return RedirectToAction("Index", "Collaboration");
         }
 
+
+        public IActionResult open(string ID)
+        {
+            UsersQueries ex = new UsersQueries();
+            DataTable varCollab = new DataTable();
+            varCollab = ex.ExecuteQueryFunction("Select ACL.ID, AC.FileDirectoryID as Audio,CT.Description as Category,SCT.Description as SubCategory,U.FirstName + ' ' + U.LastName as MasterOwner, AC.ShortDescription,(SELECT FirstName + ' ' + LastName as CollaboName  from App_Users  Where ID = ACL.LinkedUserID ) CollaboName, ACL.NewUpload as ResponseAudio  from [dbo].[App_Collaborations_Linked] ACL" +
+                                                " LEFT JOIN[dbo].[App_Collaborations] AC ON AC.ID = ACL.CollaboID" +
+                                                " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
+                                                " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
+                                                " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
+                                                " Where ACL.ID = " + ID);
+            Collaborations collabs = new Collaborations();
+            foreach (DataRow row2 in varCollab.Rows)
+            {
+                collabs.ID = Convert.ToInt32(row2["ID"].ToString());
+                collabs.Category = row2["Category"].ToString();
+                collabs.SubCategory = row2["SubCategory"].ToString();
+                collabs.Name = row2["MasterOwner"].ToString();
+                collabs.Audio = row2["Audio"].ToString();
+                collabs.Description = row2["ShortDescription"].ToString();
+                collabs.ResposeAudio = row2["ResponseAudio"].ToString();
+            }
+
+
+
+
+            return View(collabs);
         }
+
+
+    }
 }

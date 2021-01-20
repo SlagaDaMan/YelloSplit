@@ -1,4 +1,4 @@
-﻿@model IEnumerable<YelloSplit.Models.UserDetails>
+﻿@model YelloSplit.Models.Collaborations
 
 @{
     ViewData["Title"] = "Index";
@@ -62,8 +62,8 @@
         </nav>
         <!--/.nav-ends -->
     </header>
-    @foreach (var @dataw in Model)
-    {
+    @*@foreach (var @dataw in Model)
+    {*@
         <section id="top_banner">
             <div class="banner">
                 <div class="inner text-center">
@@ -75,16 +75,16 @@
                     <div class="row">
 
                         <div class="col-md-8 col-sm-8 col-xs-6">
-                            <h4>User Name :@dataw.Name</h4>
+                            @*<h4>User Name :@dataw.Name</h4>*@
                         </div>
 
-                        <div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;"><span class="sep"> Total Credits : @dataw.Credits | </span><span class="current"> <a asp-controller="PendingCollabos" asp-action="Index" style="color:blue">Pending (@dataw.Pending)</a>  |   <a asp-controller="PendingCollabos" asp-action="Completed" style="color:blue">Messages (@dataw.Messages)</a> </span></div>
+                        @*<div class="col-md-4 col-sm-4 col-xs-6" style="text-align:right;"><span class="sep"> Total Credits : @dataw.Credits | </span><span class="current"> <a asp-controller="PendingCollabos" asp-action="Index" style="color:blue">Pending (@dataw.Pending)</a>  |   <a asp-controller="PendingCollabos" asp-action="Completed" style="color:blue">Messages (@dataw.Messages)</a> </span></div>*@
 
                     </div>
                 </div>
             </div>
 
-
+      @*}*@
         </section>
 
 
@@ -97,67 +97,63 @@
                             <p class="subheading">  <a asp-controller="Collaboration" asp-action="UserCollaborations" style="color:blue">Back To Main</a></p>
                         </div>
                         <br /><br />
-                              <form role="form" class="login-form" asp-action="submit">
 
-                                  <table style="overflow-x:auto;">
-                                      <thead>
-                                          <tr>
-                                              <th>
-                                                  Music
-                                              </th>
+                        <h4>Collaborations</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
 
-                                              <th>
-                                                  SubCategory
-                                              </th>
-                                              <th>
-                                                  Name
-                                              </th>
 
-                                              <th>
-                                                  Description
-                                              </th>
-                                              @*<th>
-                                                  Response Audio
-                                              </th>*@
-                                              <th>
-                                                  Submit
-                                              </th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
+                                <form asp-action="submit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="ID" class="control-label"></label>
+                                        <input asp-for="ID" class="form-control" value="@Model.ID" />
+                                        <span asp-validation-for="ID" class="text-danger"></span>
+                                    </div>
+                                    @*<div class="form-group">
+                                        <label asp-for="Category" class="control-label"></label>
+                                        <input asp-for="Category" class="form-control " value="@Model.Category" />
+                                        <span asp-validation-for="Category" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="SubCategory" class="control-label"></label>
+                                        <input asp-for="SubCategory" class="form-control" value="@Model.SubCategory" />
+                                        <span asp-validation-for="SubCategory" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label"></label>
+                                        <input asp-for="Name" class="form-control" value="@Model.Name" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Audio" class="control-label"></label>
+                                        <input asp-for="Audio" class="form-control" />
+                                        <span asp-validation-for="Audio" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Description" class="control-label"></label>
+                                        <input asp-for="Description" class="form-control" value="@Model.Description" />
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>*@
+                                    <div class="form-group">
+                                        <label asp-for="ResposeAudio" class="control-label"></label>
+                                        <input asp-for="ResposeAudio" class="form-control" value="@Model.ResposeAudio" />
+                                        <span asp-validation-for="ResposeAudio" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Submit" class="btn btn-primary" />
+                                    </div>
+                                </form>
 
-                                          @foreach (var @dataw2 in @dataw.varCollaborations)
-                                          {
-                                              <tr>
-                                                  <td>
-                                                      @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))
-                                                  </td>
+                            </div>
+                        </div>
 
-                                                  <td>
-                                                      @dataw2.SubCategory
-                                                  </td>
-                                                  <td>
-                                                      @dataw2.Name
-                                                  </td>
-                                                  <td>
-                                                      @dataw2.Description
-                                                  </td>
-                                                  @*<td id="audio" name="audio">
-                                                      <input type="text" id="audio" name="audio" /> 
-                                                  </td>*@
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
 
-                                                  <td>
-                                                      <a asp-action="open" asp-route-id="@dataw2.ID">Submit Audio</a>
-
-                                                  </td>
-                                              </tr>
-                                          }
-
-                                      </tbody>
-                                  </table>
-                                  </form>
-
-</div>
+                    </div>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
                         <img height="" width="auto" src="img/iphone62.png" class="attachment-full img-responsive" alt="">
                     </div>
@@ -167,6 +163,7 @@
     }
 
 </body>
+}
 <style>
     * {
         box-sizing: border-box;
@@ -279,47 +276,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    }
 

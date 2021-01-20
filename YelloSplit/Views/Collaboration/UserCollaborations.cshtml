@@ -4,9 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Index</h1>
-<body id="wrapper">
+<body id="wrapper" class="orange">
 
     <section id="top-header">
         <div class="container">
@@ -97,7 +95,8 @@
                         <p class="subheading">Check all the collabos you have submitted</p>
                     </div>
                     <p>
-                        <a asp-action="Create">Creat New</a>
+                        @*<a asp-action="Create">Creat New</a>*@
+                        <button type="button" class="btn btn-primary slide" onclick="@("window.location.href='" + @Url.Action("Create", "Collaboration") + "'");">ADD NEW<i class="fa fa-caret-right"></i></button>
                     </p>
                     @foreach (var @dataw in Model)
                     {

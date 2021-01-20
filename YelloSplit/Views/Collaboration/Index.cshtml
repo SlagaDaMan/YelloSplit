@@ -94,7 +94,8 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
                             <div class="section-heading">
                                 <h2>Your Number 1 <span>Collaboration Site</span></h2>
-                                <p class="subheading">  <a asp-action="UserCollaborations" style="color:blue">Upload My Collabo</a></p>
+                                <button type="button" class="btn btn-primary slide" onclick="@("window.location.href='" + @Url.Action("UserCollaborations", "Collaboration") + "'");">Upload My Collabo<i class="fa fa-caret-right"></i></button>
+                                @*<p class="subheading">  <a asp-action="UserCollaborations" style="color:blue">Upload My Collabo</a></p>*@
                             </div>
                             @*<div class="row">
         <div class="column">
@@ -161,7 +162,7 @@
                                     {
                                         <tr>
                                             <td>
-                                                @* @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))*@
+                                                <p style="font-size:90%;"> @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio)) </p>
                                             </td>
                                             <td>
                                                 <p style="font-size:90%;">Category: @dataw2.Category</p>
@@ -214,13 +215,13 @@
 
 </style>*@
 
-<style>
+@*<style>
     table, td, th {
-    /*    border: 1px solid black;*/
+        border: 1px solid black;
     }
 
     table {
-     /*   border-collapse: collapse;*/
+        border-collapse: collapse;
         width: 100%;
     }
 
@@ -230,7 +231,7 @@
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-</style>
+</style>*@
 
 <style>
     * {
@@ -254,7 +255,7 @@
 
 </style>
 
-@*<style>
+<style>
     table {
         border-collapse: collapse;
         width: 20%;
@@ -271,7 +272,7 @@
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-</style>*@
+</style>
 
 <style>
   .select-css {
