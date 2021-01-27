@@ -151,7 +151,7 @@
                                             Description
                                         </th>
                                         <th>
-                                            Collab
+                                            @*Collab*@
                                         </th>
 
                                     </tr>
@@ -162,8 +162,8 @@
                                     {
                                         <tr>
                                             <td>
-                                                <p style="font-size:90%;"> @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio)) </p>
-                                            </td>
+                                                <p style="font-size:90%;"> @Html.Raw(System.Web.HttpUtility.HtmlDecode(@dataw2.Audio))</p>
+</td>
                                             <td>
                                                 <p style="font-size:90%;">Category: @dataw2.Category</p>
                                                 <p style="font-size:90%;">SubCategory : @dataw2.SubCategory</p>
@@ -258,20 +258,22 @@
 <style>
     table {
         border-collapse: collapse;
-        width: 20%;
-        height:10%;
+        width: 150%;
+        height: 10%;
     }
 
     th, td {
         text-align: left;
         padding: 8px;
         height: 1%;
-        width: 25%;
+        width: 50%;
     }
 
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
+
+
 </style>
 
 <style>

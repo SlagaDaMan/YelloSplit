@@ -152,7 +152,7 @@ namespace YelloSplit.Controllers
         {
             UsersQueries ex = new UsersQueries();
             DataTable varUser = new DataTable();
-            varUser = ex.ExecuteQueryFunction("Update [dbo].[App_Collaborations_Linked] SET [NewUpload] = '" + ResposeAudio + "', StatusID = 3 Where ID = " + ID);
+            varUser = ex.ExecuteQueryFunction("Update [dbo].[App_Collaborations_Linked] SET [NewUpload] = '" + ResposeAudio.Replace("100%", "70%").Replace("300", "100") + "', StatusID = 3 Where ID = " + ID);
             return RedirectToAction("Index", "Collaboration");
         }
 

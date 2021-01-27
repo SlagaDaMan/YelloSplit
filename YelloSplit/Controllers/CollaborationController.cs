@@ -174,7 +174,7 @@ namespace YelloSplit.Controllers
             var CreatedDate = DateTime.Now.ToString();
 
             ex.ExecuteQueryFunction("Insert into App_Collaborations (CategoryID,SubCategoryID,ShortDescription,FileDirectoryID,UserID,StatusID,APPTypeID,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate) Values " +
-                                    $"({varCategoryID},{varSubCategoryID},'{Description}','{Audio}',{EntityID},1,{AppCategoryID},'{EntityID}','{CreatedDate}','{EntityID}','{CreatedDate}')");
+                                    $"({varCategoryID},{varSubCategoryID},'{Description}','{Audio.Replace("100%","70%").Replace("300","100")}',{EntityID},1,{AppCategoryID},'{EntityID}','{CreatedDate}','{EntityID}','{CreatedDate}')");
            
             return RedirectToAction("Index");
 
