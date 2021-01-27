@@ -179,11 +179,77 @@ namespace YelloSplit.Controllers
                 collabs.ResposeAudio = row2["ResponseAudio"].ToString();
             }
 
-
-
-
             return View(collabs);
         }
+
+        public IActionResult Accept(string ID)
+        {
+            UsersQueries ex = new UsersQueries();
+            DataTable varCollab = new DataTable();
+            varCollab = ex.ExecuteQueryFunction("Select ACL.ID, AC.UserID, ACL.LinkedUserID, AC.FileDirectoryID as Audio,CT.Description as Category,SCT.Description as SubCategory,U.FirstName + ' ' + U.LastName as MasterOwner, AC.ShortDescription,(SELECT FirstName + ' ' + LastName as CollaboName  from App_Users  Where ID = ACL.LinkedUserID ) CollaboName, ACL.NewUpload as ResponseAudio  from [dbo].[App_Collaborations_Linked] ACL" +
+                                                " LEFT JOIN[dbo].[App_Collaborations] AC ON AC.ID = ACL.CollaboID" +
+                                                " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
+                                                " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
+                                                " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
+                                                " Where ACL.ID = " + ID);
+
+            var UserID = varCollab.Rows[0][1].ToString();
+            var Collaboree = varCollab.Rows[0][2].ToString();
+            var CollaboID = varCollab.Rows[0][0].ToString();
+
+
+            DataTable varUpdatePoints = new DataTable();
+           ex.ExecuteQueryFunction(" Update [dbo].[App_Users] " +
+                                                    " Set [Credits] = SUM([Credits]- 3) " +
+                                                    " Where [ID] = " + UserID);
+
+           ex.ExecuteQueryFunction(" Update [dbo].[App_Users] " +
+                                                      " Set [Credits] = [Credits] + 3" +
+                                                      " Where [ID] = " + Collaboree);
+
+           ex.ExecuteQueryFunction(" Update [dbo].[App_Collaborations_Linked] " +
+                                                      " Set [StatusID] = 1002 " +
+                                                      " Where [ID] = " + CollaboID);
+            
+           
+
+            return RedirectToAction("Completed");
+        }
+
+
+        public IActionResult Decline(string ID)
+        {
+            UsersQueries ex = new UsersQueries();
+            DataTable varCollab = new DataTable();
+            varCollab = ex.ExecuteQueryFunction("Select ACL.ID,AC.UserID, ACL.LinkedUserID, AC.FileDirectoryID as Audio,CT.Description as Category,SCT.Description as SubCategory,U.FirstName + ' ' + U.LastName as MasterOwner, AC.ShortDescription,(SELECT FirstName + ' ' + LastName as CollaboName  from App_Users  Where ID = ACL.LinkedUserID ) CollaboName, ACL.NewUpload as ResponseAudio  from [dbo].[App_Collaborations_Linked] ACL" +
+                                                " LEFT JOIN[dbo].[App_Collaborations] AC ON AC.ID = ACL.CollaboID" +
+                                                " LEFT JOIN Lk_SubCategoryTypes SCT ON SCT.ID = AC.SubCategoryID" +
+                                                " Left Join Lk_CategoryTypes CT ON  CT.ID = AC.CategoryID" +
+                                                " LEFT JOIN App_Users U ON U.ID = AC.UserID" +
+                                                " Where ACL.ID = " + ID);
+
+            var UserID = varCollab.Rows[0][1].ToString();
+            var Collaboree = varCollab.Rows[0][2].ToString();
+            var CollaboID = varCollab.Rows[0][0].ToString();
+
+            DataTable varUpdatePoints = new DataTable();
+            varUpdatePoints = ex.ExecuteQueryFunction(" Update [dbo].[App_Users] " +
+                                                    " Set [Credits] = [Credits] - 1" +
+                                                    " Where [ID] = " + UserID);
+
+            varUpdatePoints = ex.ExecuteQueryFunction(" Update [dbo].[App_Users] " +
+                                                      " Set [Credits] = [Credits] + 1" +
+                                                      " Where [ID] = " + Collaboree);
+
+            varUpdatePoints = ex.ExecuteQueryFunction(" Update [dbo].[App_Collaborations_Linked] " +
+                                                      " Set [StatusID] = 1003 " +
+                                                      " Where [ID] = " + CollaboID);
+
+
+
+            return RedirectToAction("Completed");
+        }
+
 
 
     }
