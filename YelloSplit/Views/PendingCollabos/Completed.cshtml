@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<body id="wrapper">
+<body id="wrapper" class="orange">
 
     <section id="top-header">
         <div class="container">
@@ -13,7 +13,7 @@
                 <div class="col-md-7 col-sm-7 col-xs-7 top-header-links">
                     <ul class="contact_links">
                         <li><i class="fa fa-phone"></i><a href="#">011 325 6659</a></li>
-                        <li><i class="fa fa-envelope"></i><a href="#">YellowSplit.co.za</a></li>
+                        <li><i class="fa fa-envelope"></i><a href="#">info@yellosplit.com</a></li>
                     </ul>
                 </div>
                 <div class="col-md-5 col-sm-5 col-xs-5 social">
@@ -94,9 +94,9 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-7 text-align">
                         <div class="section-heading">
                             <h2>Your Number 1 <span>Collabo Site</span></h2>
-                            <p class="subheading">  <a asp-action="UserCollaborations" style="color:blue">Upload My Collabo</a></p>
+                             <a asp-action="Index" asp-controller="Collaboration" style="color:blue">Back To Main</a>
                         </div>
-                        <div class="row">
+                        @*<div class="row">
                             <div class="column">
                                 <label>Category</label>
 
@@ -134,7 +134,7 @@
                                 </p>
 
                             </div>
-                        </div> <br /><br />
+                        </div> <br /><br />*@
 
 
                         <table style="overflow-x:auto;">
